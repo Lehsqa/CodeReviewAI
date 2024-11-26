@@ -30,7 +30,6 @@ venv/
 
 # Sqlite
 *.sqlite3
-*.db
 
 # Databases dumps
 dump.sql

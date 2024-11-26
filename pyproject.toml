@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "code-review-ai"
+version = "0.1.0"
+description = ""
+authors = ["Sviatoslav Romanenko <sviatoslav.romanenko@computools.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.5"
+loguru = "^0.7.2"
+langchain = "^0.3.8"
+uvicorn = "^0.32.1"
+pytest = "^8.3.3"
+
+[tool.pytest.ini_options]
+addopts = '-s -vvv --cache-clear'
+asyncio_mode = 'auto'
+cache_dir = '/tmp'
+python_files = 'tests.py test_*.py *_test.py'
+python_functions = 'test_* *_test'
+filterwarnings = ['ignore::RuntimeWarning', 'ignore::UserWarning', "ignore::DeprecationWarning"]
+env = [
+    "DATABASE__DRIVER=sqlite+aiosqlite",
+]
+
+
+[tool.coverage.run]
+omit = [
+    "*/conftest.py",
+    "*/test_*.py",
+    "*/migrations/",
+    "*/venv/",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

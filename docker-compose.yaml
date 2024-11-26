@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  cache:
+    image: redis
+    container_name: code-review-ai-cache
+    ports:
+      - "${DOCKER_CACHE_PORT_EXPOSE}:6379"
+
+  app: &app
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: compose/app/Dockerfile
+      target: development
+    command: /start
+    image: code-review-ai
+    container_name: code-review-ai-app
+    env_file: ".env"
+    environment:
+      - PUBLIC_API__VERSION=$PUBLIC_API__VERSION
+    depends_on:
+      - cache
+    ports:
+      - "${DOCKER_APP_PORT_EXPOSE}:${UVICORN_PORT}"
+    volumes:
+      - .:/app/
