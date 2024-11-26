@@ -11,7 +11,7 @@ repository access.
 Clone the project from GitHub
 
 ```bash
-git clone git@github.com:InfinitePL/relo_quick_backend.git
+git clone git@github.com:Lehsqa/CodeReviewAI.git
 ```
 
 ## 🏃‍♂️ Run the application
